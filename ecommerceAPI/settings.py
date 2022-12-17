@@ -28,8 +28,11 @@ INSTALLED_APPS = [
 
     'Products.apps.ProductsConfig',
     'Brands.apps.BrandsConfig',
+    'Category.apps.CategoryConfig',
 
     'rest_framework',
+    'rest_framework_swagger',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [

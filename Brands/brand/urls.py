@@ -1,5 +1,5 @@
 from django.urls import path, include
-from . import views
+from Brands.brand import views
 
 urlpatterns = [
     path('get_all/', views.getAllBrand),
@@ -7,6 +7,4 @@ urlpatterns = [
     path('post/', views.createBrand),
     path('put/<int:pk>/', views.updateBrand),
     path('delete/<int:pk>/', views.deleteBrand),
-
-    path('category/', include('Brands.category.urls')),
 ]

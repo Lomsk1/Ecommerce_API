@@ -1,24 +1,25 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from Brands.models import Brand
-from .serializers import BrandSerializer
+from Brands.serializers import BrandSerializer
 from rest_framework import status
+from drf_yasg.utils import swagger_auto_schema
 
-
+# @swagger_auto_schema(operation_description="This endpoint returns every all Brands", method="GET")
 @api_view(['Get'])
 def getAllBrand(request):
     brands = Brand.objects.all()
     serializer = BrandSerializer(brands, many=True)
     return  Response(serializer.data)
 
-
+@swagger_auto_schema(operation_description="This endpoint returns every Brands by ID", method="GET")
 @api_view(["GET"])
 def getBrandById(request, pk):
     brand = Brand.objects.get(id=pk)
     serializer =BrandSerializer(brand, many=False)
     return  Response(serializer.data)
 
-
+@swagger_auto_schema(operation_description="This endpoint create Brands", method="POST",  request_body=BrandSerializer)
 @api_view(["POST"])
 def createBrand(request):
     serializer = BrandSerializer(data=request.data)
@@ -28,7 +29,7 @@ def createBrand(request):
 
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
+@swagger_auto_schema(operation_description="This endpoint change Brands", method="PUT", request_body=BrandSerializer)
 @api_view(["PUT"])
 def updateBrand(request, pk):
     brand = Brand.objects.get(id=pk)
@@ -41,7 +42,7 @@ def updateBrand(request, pk):
     return  Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-
+@swagger_auto_schema(operation_description="This endpoint delete Brands", method="DELETE")
 @api_view(["DELETE"])
 def deleteBrand(request, pk):
     brand = Brand.objects.get(id=pk)

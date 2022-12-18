@@ -3,9 +3,10 @@ from rest_framework.response import Response
 from Brands.models import BrandCategories
 from Brands.serializers import BrandCategorySerializer
 from rest_framework import status
+from drf_yasg.utils import swagger_auto_schema
 
-from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
 
+@swagger_auto_schema(operation_description="This endpoint returns Categories by Brands", method="GET")
 @api_view(["GET"])
 def getCategoriesByBrand(request, brand_id):
     categories = BrandCategories.objects.filter(brands=brand_id)
@@ -14,6 +15,7 @@ def getCategoriesByBrand(request, brand_id):
     return Response(serializer.data)
 
 
+@swagger_auto_schema(operation_description="This endpoint returns all Brand Category", method="GET")
 @api_view(["GET"])
 def getAllBrandCategory(request):
     categories = BrandCategories.objects.all()
@@ -22,6 +24,7 @@ def getAllBrandCategory(request):
     return Response(serializer.data)
 
 
+@swagger_auto_schema(operation_description="This endpoint returns Brand Category by ID", method="GET")
 @api_view(["GET"])
 def getBrandCategory(request, pk):
     categories = BrandCategories.objects.get(id=pk)
@@ -30,6 +33,7 @@ def getBrandCategory(request, pk):
     return Response(serializer.data)
 
 
+@swagger_auto_schema(operation_description="This endpoint returns create Brand Category", method="POST",  request_body=BrandCategorySerializer)
 @api_view(["POST"])
 def createBrandCategory(request):
     serializer = BrandCategorySerializer(data=request.data)
@@ -39,6 +43,8 @@ def createBrandCategory(request):
 
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+@swagger_auto_schema(operation_description="This endpoint returns Change Brand Category", method="PUT",  request_body=BrandCategorySerializer)
 
 @api_view(["PUT"])
 def putBrandCategory(request, pk):
@@ -51,6 +57,8 @@ def putBrandCategory(request, pk):
 
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+@swagger_auto_schema(operation_description="This endpoint returns Delete Brand Category", method="DELETE")
 
 @api_view(["DELETE"])
 def deleteBrandCategory(request, pk):

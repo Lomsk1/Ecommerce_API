@@ -24,6 +24,8 @@ urlpatterns = [
 
     path('product/', include('Products.urls')),
 
-    path('brand/brand/', include('Brands.brand.urls'), name="Brand"),
-    path('brand/category/', include('Brands.category.urls')),
+    path('brand/', include('Brands.brand.urls'), name="Brand"),
+    path('brand_category/', include('Brands.category.urls')),
+
+    path('category/', include('Category.urls')),
 ]

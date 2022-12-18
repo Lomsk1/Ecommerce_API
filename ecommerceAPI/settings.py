@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'Products.apps.ProductsConfig',
     'Brands.apps.BrandsConfig',
     'Category.apps.CategoryConfig',
+    'Branch.apps.BranchConfig',
 
     'rest_framework',
     'rest_framework_swagger',

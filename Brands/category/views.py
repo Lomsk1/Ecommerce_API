@@ -33,7 +33,7 @@ def getBrandCategory(request, pk):
     return Response(serializer.data)
 
 
-@swagger_auto_schema(operation_description="This endpoint returns create Brand Category", method="POST",  request_body=BrandCategorySerializer)
+@swagger_auto_schema(operation_description="This endpoint create Brand Category", method="POST",  request_body=BrandCategorySerializer)
 @api_view(["POST"])
 def createBrandCategory(request):
     serializer = BrandCategorySerializer(data=request.data)
@@ -44,7 +44,7 @@ def createBrandCategory(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@swagger_auto_schema(operation_description="This endpoint returns Change Brand Category", method="PUT",  request_body=BrandCategorySerializer)
+@swagger_auto_schema(operation_description="This endpoint Change Brand Category", method="PUT",  request_body=BrandCategorySerializer)
 
 @api_view(["PUT"])
 def putBrandCategory(request, pk):

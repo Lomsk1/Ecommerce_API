@@ -6,7 +6,7 @@ from rest_framework import status
 from drf_yasg.utils import swagger_auto_schema
 
 @swagger_auto_schema(operation_description="This endpoint returns every all Brands", method="GET")
-@api_view(['Get'])
+@api_view(['GET'])
 def getAllBrand(request):
     brands = Brand.objects.all()
     serializer = BrandSerializer(brands, many=True)

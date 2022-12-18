@@ -28,4 +28,8 @@ urlpatterns = [
     path('brand_category/', include('Brands.category.urls')),
 
     path('category/', include('Category.urls')),
+
+    path('branch_working_hour/', include('Branch.working_hours.urls')),
+    path('branch_coord/', include('Branch.coord.urls')),
+    path('branch/', include('Branch.branch.urls')),
 ]

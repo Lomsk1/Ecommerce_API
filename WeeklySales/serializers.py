@@ -1,7 +1,8 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, DateField
 from WeeklySales.models import WeeklySale
 
-class WeeklySalesSerializer(ModelSerializer):
+
+class WeeklySaleSerializer(ModelSerializer):
     class Meta:
         model = WeeklySale
         fields = "__all__"

@@ -30,6 +30,8 @@ INSTALLED_APPS = [
     'Brands.apps.BrandsConfig',
     'Category.apps.CategoryConfig',
     'Branch.apps.BranchConfig',
+    'WeeklySales.apps.WeeklysalesConfig',
+
 
     'rest_framework',
     'rest_framework_swagger',

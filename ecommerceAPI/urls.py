@@ -34,4 +34,6 @@ urlpatterns = [
     path('branch/', include('Branch.branch.urls')),
 
     path('weekly_sale/', include('WeeklySales.urls')),
+
+    path('news/', include('News.urls')),
 ]

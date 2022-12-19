@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'Category.apps.CategoryConfig',
     'Branch.apps.BranchConfig',
     'WeeklySales.apps.WeeklysalesConfig',
+    'News.apps.NewsConfig',
 
 
     'rest_framework',

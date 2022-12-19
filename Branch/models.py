@@ -9,14 +9,23 @@ class Branch(models.Model):
     address = models.CharField(max_length=255, null=True)
     phone = models.CharField(max_length=255, null=True)
 
+    def __str__(self):
+        return self.name
+
 
 class BranchCoord(models.Model):
     lat = models.CharField(max_length=200)
     long = models.CharField(max_length=200)
     branch = models.ForeignKey(Branch, related_name='coord', on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.branch.name
 
 class BranchWorkingHours(models.Model):
     week_day = models.TextField(blank=False)
     hour = models.TextField(blank=False)
-    branch = models.ForeignKey(Branch, related_name='working_hours', on_delete=models.CASCADE)
+    branch = models.ForeignKey(Branch, related_name='working_hours',
+                               on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.branch.name

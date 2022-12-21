@@ -22,8 +22,8 @@ class BranchCoord(models.Model):
         return self.branch.name
 
 class BranchWorkingHours(models.Model):
-    week_day = models.TextField(blank=False)
-    hour = models.TextField(blank=False)
+    week_day = models.CharField(max_length=200, blank=False)
+    hour = models.CharField(max_length=200, blank=False)
     branch = models.ForeignKey(Branch, related_name='working_hours',
                                on_delete=models.CASCADE)
 

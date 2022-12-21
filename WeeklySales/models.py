@@ -6,7 +6,7 @@ import os
 class WeeklySale(models.Model):
     title = models.CharField(max_length=200, null=True)
     text = models.CharField(max_length=200, null=True)
-    image = models.ImageField(blank=True, upload_to='./images/weekly_sale')
+    image = models.ImageField(blank=True, upload_to='./weekly_sale')
     deadline = models.DateField(null=True)
 
     def img_delete(self, image, *args, **kwargs):

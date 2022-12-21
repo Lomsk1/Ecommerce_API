@@ -5,7 +5,7 @@ import os
 
 class News(models.Model):
     name = models.CharField(max_length=200, null=True)
-    image = models.ImageField(upload_to='./images/news', blank=True)
+    image = models.ImageField(upload_to='./news', blank=True)
     deadline = models.DateTimeField(null=True)
 
     def img_delete(self, image, *args, **kwargs):

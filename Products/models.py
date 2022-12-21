@@ -15,7 +15,7 @@ class Product(models.Model):
     title = models.CharField(max_length=200, null=True)
     separate = models.CharField(max_length=200, null=True)
     description = models.TextField(null=True)
-    thumbnail = models.ImageField(upload_to='./images/products', null=True)
+    thumbnail = models.ImageField(upload_to='./products', null=True)
     amount = models.IntegerField(blank=True, default=1)
     new = models.BooleanField(default=False)
     price = models.IntegerField(null=True)
@@ -40,7 +40,7 @@ class Product(models.Model):
 
 
 class ProductImages(models.Model):
-    image = models.ImageField(upload_to='./images/products', null=True)
+    image = models.ImageField(upload_to='./products', null=True)
     product = models.ForeignKey(Product, related_name='images',
                                 on_delete=models.CASCADE, null=True)
 

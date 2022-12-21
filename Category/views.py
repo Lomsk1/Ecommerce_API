@@ -51,8 +51,10 @@ def changeCategory(request, pk):
 @api_view(['DELETE'])
 def deleteCategory(request, pk):
     category = Category.objects.get(id=pk)
+    image = category.image.path
 
     if category:
+        category.img_delete(image)
         if category.delete():
             return Response("Category has been Deleted", status=status.HTTP_200_OK)
         else:

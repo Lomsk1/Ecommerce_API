@@ -7,8 +7,8 @@ import  os
 class Brand(models.Model):
     name = models.CharField(max_length=200, null=True)
     description = models.TextField(null=True)
-    thumbnail = models.ImageField(null=True, upload_to='./images/brand')
-    image = models.ImageField(null=True, upload_to='./images/brand')
+    thumbnail = models.ImageField(null=True, upload_to='./brand')
+    image = models.ImageField(null=True, upload_to='./brand')
 
 
     def img_delete(self, image, thumbnail, *args, **kwargs):

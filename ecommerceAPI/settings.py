@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -51,6 +52,7 @@ MIDDLEWARE = [
 
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = 'ecommerceAPI.urls'
@@ -121,7 +123,15 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+STATICFILES_STORAGE = "whitenoise.storage.ManifestStaticFilesStorage"
+MEDIA_URL = "/images/"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'images/')
+
+
 CORS_ALLOW_ALL_ORIGINS =True
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field

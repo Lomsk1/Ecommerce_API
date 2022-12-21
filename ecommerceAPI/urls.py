@@ -22,8 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
 
-    path('product/', include('Products.urls')),
-
     path('brand/', include('Brands.brand.urls'), name="Brand"),
     path('brand_category/', include('Brands.category.urls')),
 
@@ -36,4 +34,9 @@ urlpatterns = [
     path('weekly_sale/', include('WeeklySales.urls')),
 
     path('news/', include('News.urls')),
+
+    path('product/', include('Products.product.urls')),
+    path('product_image/', include('Products.product_images.urls')),
+    path('product_specification/', include('Products.specification.urls')),
+    path('product_basic/', include('Products.spec_basic.urls')),
 ]

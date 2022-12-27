@@ -29,6 +29,8 @@ class Product(models.Model):
     product_model = models.CharField(max_length=200, null=True)
     top = models.BooleanField(default=False, blank=True)
     popularity = models.BooleanField(default=False, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True, editable=False)
 
     def img_delete(self, thumbnail, *args, **kwargs):
         if os.path.isfile(thumbnail):

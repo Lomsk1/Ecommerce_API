@@ -57,7 +57,7 @@ def deleteBranch(request, pk):
 
     if branch:
         if branch.delete():
-            return Response("Branch has been Deleted", status=status.HTTP_200_OK)
+            return Response(f"Branch ID {pk} has been Deleted", status=status.HTTP_200_OK)
         else:
             return Response("Error while deleting", status.HTTP_400_BAD_REQUEST)
 

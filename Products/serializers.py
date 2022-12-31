@@ -1,6 +1,7 @@
 from rest_framework.serializers import ModelSerializer
 from Products.models import Product, ProductImages, ProductBranch, Specifications, \
     SpecificationBasics
+from Branch.serializers import BranchSerializer
 
 
 class ProductImageSerializer(ModelSerializer):
@@ -10,6 +11,7 @@ class ProductImageSerializer(ModelSerializer):
 
 
 class ProductBranchSerializer(ModelSerializer):
+    # branch = BranchSerializer(many=True, read_only=True)
     class Meta:
         model = ProductBranch
         fields = '__all__'

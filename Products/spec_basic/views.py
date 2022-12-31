@@ -9,8 +9,8 @@ from drf_yasg.utils import swagger_auto_schema
 @swagger_auto_schema(operation_description="This endpoint return Spec Basic by Product",
                      method="GET")
 @api_view(["GET"])
-def getSpecBasicByProduct(request, product_id):
-    basic = SpecificationBasics.objects.filter(product=product_id)
+def getSpecBasicBySpec(request, basic_id):
+    basic = SpecificationBasics.objects.filter(basic_id=basic_id)
     serializer = SpecificationBasicsSerializer(basic, many=True)
 
     return Response(serializer.data)

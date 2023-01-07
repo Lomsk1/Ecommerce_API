@@ -43,4 +43,6 @@ urlpatterns = [
     path('product_specification/', include('Products.specification.urls')),
     path('product_basic/', include('Products.spec_basic.urls')),
     path('stock/', include('Products.branch.urls')),
+
+    path('sub/', include('Subscription.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

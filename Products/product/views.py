@@ -6,6 +6,13 @@ from rest_framework import status
 from drf_yasg.utils import swagger_auto_schema
 
 
+@swagger_auto_schema(operation_description="This endpoint returns all limited Product", method="GET")
+@api_view(['GET'])
+def getAllLimitProduct(request, limit):
+    product = Product.objects.all()[:limit]
+    serializer = ProductSerializer(product, many=True)
+    return Response(serializer.data)
+
 @swagger_auto_schema(operation_description="This endpoint returns all Product", method="GET")
 @api_view(['GET'])
 def getAllProduct(request):
@@ -21,6 +28,7 @@ def getProductById(request, pk):
     product = Product.objects.get(id=pk)
     serializer =ProductSerializer(product, many=False)
     return Response(serializer.data)
+
 
 @swagger_auto_schema(operation_description="This endpoint create Product",
                      method="POST",  request_body=ProductSerializer)

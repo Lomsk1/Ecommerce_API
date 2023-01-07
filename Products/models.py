@@ -31,6 +31,7 @@ class Product(models.Model):
     popularity = models.BooleanField(default=False, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True, editable=False)
+    total_in_stock = models.BooleanField(default=True, blank=True)
 
     def img_delete(self, thumbnail, *args, **kwargs):
         if os.path.isfile(thumbnail):

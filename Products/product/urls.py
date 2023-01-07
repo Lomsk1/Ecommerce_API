@@ -2,6 +2,7 @@ from django.urls import path
 from Products.product import views
 
 urlpatterns = [
+    path('get_all/<int:limit>/', views.getAllLimitProduct),
     path('get_all/', views.getAllProduct),
     path('get_by_id/<int:pk>/', views.getProductById),
     path('post/', views.createProduct),

@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     'Branch.apps.BranchConfig',
     'WeeklySales.apps.WeeklysalesConfig',
     'News.apps.NewsConfig',
-
+    'Subscription.apps.SubscriptionConfig',
 
     'rest_framework',
     'rest_framework_swagger',

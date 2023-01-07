@@ -11,7 +11,6 @@ class ProductImageSerializer(ModelSerializer):
 
 
 class ProductBranchSerializer(ModelSerializer):
-    # branch = BranchSerializer(many=True, read_only=True)
     class Meta:
         model = ProductBranch
         fields = '__all__'
@@ -31,8 +30,8 @@ class SpecificationsSerializer(ModelSerializer):
 
 
 class ProductSerializer(ModelSerializer):
-    branch = SpecificationsSerializer(many=True, read_only=True)
-    specification = ProductBranchSerializer(many=True, read_only=True)
+    branch = ProductBranchSerializer(many=True, read_only=True)
+    specification = SpecificationsSerializer(many=True, read_only=True)
     images = ProductImageSerializer(many=True, read_only=True)
 
     class Meta:

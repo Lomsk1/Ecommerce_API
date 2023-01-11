@@ -1,14 +1,16 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from Branch.models import Branch
 from Branch.serializers import BranchSerializer
 from rest_framework import status
 from drf_yasg.utils import swagger_auto_schema
+from rest_framework.permissions import IsAuthenticated
 
 
 @swagger_auto_schema(operation_description="This endpoint returns all Branch",
                      method="GET")
 @api_view(['GET'])
+# @permission_classes([IsAuthenticated])
 def getAllBranch(request):
     branch = Branch.objects.all()
     serializer = BranchSerializer(branch, many=True)

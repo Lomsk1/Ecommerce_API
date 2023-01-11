@@ -213,6 +213,8 @@ CSRF_TRUSTED_ORIGINS = [
 #     'django.contrib.auth.backends.ModelBackend',
 # )
 
+# SITE_NAME = 'Frontend'
+DOMAIN = 'localhost:5173'
 DJOSER = {
     'LOGIN_FIELD': 'email',
     'USER_CREATE_PASSWORD_RETYPE': True,

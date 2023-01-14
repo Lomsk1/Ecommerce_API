@@ -1,4 +1,5 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from Products.models import Product
 from Products.serializers import ProductSerializer
@@ -33,6 +34,7 @@ def getProductById(request, pk):
 @swagger_auto_schema(operation_description="This endpoint create Product",
                      method="POST",  request_body=ProductSerializer)
 @api_view(["POST"])
+@permission_classes([IsAdminUser])
 def createProduct(request):
     serializer = ProductSerializer(data=request.data)
     if serializer.is_valid():
@@ -44,6 +46,7 @@ def createProduct(request):
 @swagger_auto_schema(operation_description="This endpoint change Product",
                      method="PUT", request_body=ProductSerializer)
 @api_view(["PUT"])
+@permission_classes([IsAdminUser])
 def updateProduct(request, pk):
     product = Product.objects.get(id=pk)
     serializer = ProductSerializer(product, data=request.data)
@@ -57,6 +60,7 @@ def updateProduct(request, pk):
 
 @swagger_auto_schema(operation_description="This endpoint delete Product", method="DELETE")
 @api_view(["DELETE"])
+@permission_classes([IsAdminUser])
 def deleteProduct(request, pk):
     product = Product.objects.get(id=pk)
     thumbnail = product.thumbnail.path

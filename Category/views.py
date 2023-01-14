@@ -1,9 +1,10 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from Category.models import Category
 from Category.serializers import CategorySerializer
 from rest_framework import status
 from drf_yasg.utils import swagger_auto_schema
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 
 @swagger_auto_schema(operation_description="This endpoint returns all Category", method="GET")
@@ -24,6 +25,7 @@ def getCategoryByID(request, pk):
 @swagger_auto_schema(operation_description="This endpoint Create Category", method="POST",
                      request_body=CategorySerializer)
 @api_view(['POST'])
+@permission_classes([IsAdminUser])
 def createCategory(request):
     serializer = CategorySerializer(data=request.data)
     if serializer.is_valid():
@@ -36,6 +38,7 @@ def createCategory(request):
 @swagger_auto_schema(operation_description="This endpoint Change Category", method="PUT",
                      request_body=CategorySerializer)
 @api_view(['PUT'])
+@permission_classes([IsAdminUser])
 def changeCategory(request, pk):
     category = Category.objects.get(id=pk)
     serializer = CategorySerializer(category, data=request.data)
@@ -49,6 +52,7 @@ def changeCategory(request, pk):
 
 @swagger_auto_schema(operation_description="This endpoint Delete Category by ID", method="DELETE")
 @api_view(['DELETE'])
+@permission_classes([IsAdminUser])
 def deleteCategory(request, pk):
     category = Category.objects.get(id=pk)
     image = category.image.path

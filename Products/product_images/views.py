@@ -1,4 +1,5 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from Products.models import ProductImages
 from Products.serializers import ProductImageSerializer
@@ -39,6 +40,7 @@ def getImagesByID(request, pk):
 @swagger_auto_schema(operation_description="This endpoint create Image",
                      method="POST",  request_body=ProductImageSerializer)
 @api_view(["POST"])
+@permission_classes([IsAdminUser])
 def createImage(request):
     serializer = ProductImageSerializer(data=request.data)
     if serializer.is_valid():
@@ -51,6 +53,7 @@ def createImage(request):
 @swagger_auto_schema(operation_description="This endpoint Change Images",
                      method="PUT",  request_body=ProductImageSerializer)
 @api_view(["PUT"])
+@permission_classes([IsAdminUser])
 def putImage(request, pk):
     image = ProductImages.objects.get(id=pk)
     serializer = ProductImageSerializer(image, data=request.data)
@@ -65,6 +68,7 @@ def putImage(request, pk):
 @swagger_auto_schema(operation_description="This endpoint returns Delete Image",
                      method="DELETE")
 @api_view(["DELETE"])
+@permission_classes([IsAdminUser])
 def deleteImage(request, pk):
     images = ProductImages.objects.get(id=pk)
     image = images.image.path

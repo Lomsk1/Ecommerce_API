@@ -1,9 +1,11 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from Branch.models import BranchWorkingHours
 from Branch.serializers import BranchWorkingHoursSerializer
 from rest_framework import status
 from drf_yasg.utils import swagger_auto_schema
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
+
 
 
 @swagger_auto_schema(operation_description="This endpoint returns all Branch Working hours",
@@ -38,6 +40,7 @@ def getWorkingHoursByBranch(request, branch_id):
 @swagger_auto_schema(operation_description="This endpoint create Branch Working Hours",
                      method="POST",  request_body=BranchWorkingHoursSerializer)
 @api_view(["POST"])
+@permission_classes([IsAdminUser])
 def createBranchWorkingHours(request):
     serializer = BranchWorkingHoursSerializer(data=request.data)
     if serializer.is_valid():
@@ -49,6 +52,7 @@ def createBranchWorkingHours(request):
 @swagger_auto_schema(operation_description="This endpoint Change Branch Working Hours",
                      method="PUT",  request_body=BranchWorkingHoursSerializer)
 @api_view(["PUT"])
+@permission_classes([IsAdminUser])
 def putBranchWorkingHours(request, pk):
     working = BranchWorkingHours.objects.get(id=pk)
     serializer = BranchWorkingHoursSerializer(working, data=request.data)
@@ -62,6 +66,7 @@ def putBranchWorkingHours(request, pk):
 @swagger_auto_schema(operation_description="This endpoint Delete Branch Working Hours",
                      method="DELETE")
 @api_view(["DELETE"])
+@permission_classes([IsAdminUser])
 def deleteBranchWorkingHours(request, pk):
     working = BranchWorkingHours.objects.get(id=pk)
 

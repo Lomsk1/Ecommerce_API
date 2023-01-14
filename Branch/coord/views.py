@@ -1,9 +1,10 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from Branch.models import BranchCoord
 from Branch.serializers import BranchCoordSerializer
 from rest_framework import status
 from drf_yasg.utils import swagger_auto_schema
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 
 @swagger_auto_schema(operation_description="This endpoint returns all Branch Coord",
@@ -38,6 +39,7 @@ def getBranchCoordByBranch(request, branch_id):
 @swagger_auto_schema(operation_description="This endpoint create Branch Coord",
                      method="POST",  request_body=BranchCoordSerializer)
 @api_view(["POST"])
+@permission_classes([IsAdminUser])
 def createBranchCoord(request):
     serializer = BranchCoordSerializer(data=request.data)
     if serializer.is_valid():
@@ -49,6 +51,7 @@ def createBranchCoord(request):
 @swagger_auto_schema(operation_description="This endpoint Change Branch Coord",
                      method="PUT",  request_body=BranchCoordSerializer)
 @api_view(["PUT"])
+@permission_classes([IsAdminUser])
 def putBranchCoord(request, pk):
     coord = BranchCoord.objects.get(id=pk)
     serializer = BranchCoordSerializer(coord, data=request.data)
@@ -62,6 +65,7 @@ def putBranchCoord(request, pk):
 @swagger_auto_schema(operation_description="This endpoint Delete Branch Coord",
                      method="DELETE")
 @api_view(["DELETE"])
+@permission_classes([IsAdminUser])
 def deleteBranchCoord(request, pk):
     coord = BranchCoord.objects.get(id=pk)
 

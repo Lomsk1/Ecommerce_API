@@ -1,5 +1,6 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from News.models import News
 from News.serializers import NewsSerializer
 from rest_framework import status
@@ -22,6 +23,7 @@ def newsByID(request, pk):
 
 @swagger_auto_schema(operation_description="This endpoint Create News", method="POST")
 @api_view(['POST'])
+@permission_classes([IsAdminUser])
 def createNews(request):
     serializer = NewsSerializer(data=request.data)
     if serializer.is_valid():
@@ -32,6 +34,7 @@ def createNews(request):
 
 @swagger_auto_schema(operation_description="This endpoint Change News", method="PUT")
 @api_view(['PUT'])
+@permission_classes([IsAdminUser])
 def changeNews(request, pk):
     news = News.objects.get(id=pk)
     serializer = NewsSerializer(news, data=request.data)
@@ -45,6 +48,7 @@ def changeNews(request, pk):
 
 @swagger_auto_schema(operation_description="This endpoint Delete News", method="DELETE")
 @api_view(['DELETE'])
+@permission_classes([IsAdminUser])
 def deleteNews(request, pk):
     news = News.objects.get(id=pk)
     image = news.image.path

@@ -1,4 +1,5 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from Products.models import Specifications
 from Products.serializers import SpecificationsSerializer
@@ -39,6 +40,7 @@ def getSpecificationByID(request, pk):
 @swagger_auto_schema(operation_description="This endpoint create Specification",
                      method="POST",  request_body=SpecificationsSerializer)
 @api_view(["POST"])
+@permission_classes([IsAdminUser])
 def createSpecification(request):
     serializer = SpecificationsSerializer(data=request.data)
     if serializer.is_valid():
@@ -51,6 +53,7 @@ def createSpecification(request):
 @swagger_auto_schema(operation_description="This endpoint Change Specification",
                      method="PUT",  request_body=SpecificationsSerializer)
 @api_view(["PUT"])
+@permission_classes([IsAdminUser])
 def putSpecification(request, pk):
     specification = Specifications.objects.get(id=pk)
     serializer = SpecificationsSerializer(specification, data=request.data)
@@ -65,6 +68,7 @@ def putSpecification(request, pk):
 @swagger_auto_schema(operation_description="This endpoint returns Delete Specification",
                      method="DELETE")
 @api_view(["DELETE"])
+@permission_classes([IsAdminUser])
 def deleteSpecification(request, pk):
     specification = Specifications.objects.get(id=pk)
 

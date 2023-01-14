@@ -4,13 +4,12 @@ from Branch.models import Branch
 from Branch.serializers import BranchSerializer
 from rest_framework import status
 from drf_yasg.utils import swagger_auto_schema
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 
 @swagger_auto_schema(operation_description="This endpoint returns all Branch",
                      method="GET")
 @api_view(['GET'])
-# @permission_classes([IsAuthenticated])
 def getAllBranch(request):
     branch = Branch.objects.all()
     serializer = BranchSerializer(branch, many=True)
@@ -30,6 +29,7 @@ def getBranchByID(request, pk):
 @swagger_auto_schema(operation_description="This endpoint create Branch",
                      method="POST",  request_body=BranchSerializer)
 @api_view(["POST"])
+@permission_classes([IsAdminUser])
 def createBranch(request):
     serializer = BranchSerializer(data=request.data)
     if serializer.is_valid():
@@ -41,6 +41,7 @@ def createBranch(request):
 @swagger_auto_schema(operation_description="This endpoint Change Branch",
                      method="PUT",  request_body=BranchSerializer)
 @api_view(["PUT"])
+@permission_classes([IsAdminUser])
 def putBranch(request, pk):
     branch = Branch.objects.get(id=pk)
     serializer = BranchSerializer(branch, data=request.data)
@@ -54,6 +55,7 @@ def putBranch(request, pk):
 @swagger_auto_schema(operation_description="This endpoint Delete Branch",
                      method="DELETE")
 @api_view(["DELETE"])
+@permission_classes([IsAdminUser])
 def deleteBranch(request, pk):
     branch = Branch.objects.get(id=pk)
 

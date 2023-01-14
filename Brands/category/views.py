@@ -1,5 +1,6 @@
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from Brands.models import BrandCategories
 from Brands.serializers import BrandCategorySerializer
 from rest_framework import status
@@ -33,8 +34,10 @@ def getBrandCategory(request, pk):
     return Response(serializer.data)
 
 
-@swagger_auto_schema(operation_description="This endpoint create Brand Category", method="POST",  request_body=BrandCategorySerializer)
+@swagger_auto_schema(operation_description="This endpoint create Brand Category",
+                     method="POST",  request_body=BrandCategorySerializer)
 @api_view(["POST"])
+@permission_classes([IsAdminUser])
 def createBrandCategory(request):
     serializer = BrandCategorySerializer(data=request.data)
     if serializer.is_valid():
@@ -44,9 +47,10 @@ def createBrandCategory(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@swagger_auto_schema(operation_description="This endpoint Change Brand Category", method="PUT",  request_body=BrandCategorySerializer)
-
+@swagger_auto_schema(operation_description="This endpoint Change Brand Category",
+                     method="PUT",  request_body=BrandCategorySerializer)
 @api_view(["PUT"])
+@permission_classes([IsAdminUser])
 def putBrandCategory(request, pk):
     category = BrandCategories.objects.get(id=pk)
     serializer = BrandCategorySerializer(category, data=request.data)
@@ -58,9 +62,10 @@ def putBrandCategory(request, pk):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@swagger_auto_schema(operation_description="This endpoint returns Delete Brand Category", method="DELETE")
-
+@swagger_auto_schema(operation_description="This endpoint returns Delete Brand Category",
+                     method="DELETE")
 @api_view(["DELETE"])
+@permission_classes([IsAdminUser])
 def deleteBrandCategory(request, pk):
     category = BrandCategories.objects.get(id=pk)
 

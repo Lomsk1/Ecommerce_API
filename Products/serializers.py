@@ -1,8 +1,7 @@
 from rest_framework.serializers import ModelSerializer
 from Products.models import Product, ProductImages, ProductBranch, Specifications, \
     SpecificationBasics
-from Branch.serializers import BranchSerializer
-
+from wishlist.serializers import WishlistSerializer
 
 class ProductImageSerializer(ModelSerializer):
     class Meta:

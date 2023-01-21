@@ -8,4 +8,7 @@ urlpatterns = [
     path('post/', views.createProduct),
     path('put/<int:pk>/', views.updateProduct),
     path('delete/<int:pk>/', views.deleteProduct),
+
+    # path('for_wishlist/', views.getProductsByUser),
+
 ]

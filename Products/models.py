@@ -2,10 +2,7 @@ from django.db import models
 from Category.models import Category
 from Brands.models import BrandCategories
 from Branch.models import Branch
-from Accounts.models import UserAccount
 import os
-
-# Create your models here.
 
 
 class Product(models.Model):
@@ -13,8 +10,6 @@ class Product(models.Model):
                                  on_delete=models.CASCADE, null=True)
     brand = models.ForeignKey(BrandCategories, related_name='product',
                               on_delete=models.CASCADE, null=True)
-    wishlist = models.ForeignKey(UserAccount, related_name='product',
-    on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=200, null=True)
     separate = models.CharField(max_length=200, null=True)
     description = models.TextField(null=True)
